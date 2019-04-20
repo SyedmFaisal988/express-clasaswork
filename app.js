@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const hbs = require('hbs');
 
 // console.log(__dirname);
 // console.log(__filename);
@@ -8,8 +9,10 @@ const path = require('path');
  //const newPath = path.join(__dirname, '../public/html');
  const newPath = path.join(__dirname, '/public/');
  const viewsFolder = path.join(__dirname, '/templates/views');
- app.set('views', viewsFolder);
+ const partialFolder = path.join(__dirname, '/templates/partials');
 
+ hbs.registerPartials(partialFolder);
+ app.set('views', viewsFolder);
  app.use(express.static(newPath));
  app.set('view engine', 'hbs');
 console.log(newPath);
@@ -20,6 +23,10 @@ app.get('/', (req, res)=>{
         createdBy: 'SyedmFaisal988',
     })
 })
+
+app.get('/about', (req, res)=>{
+    res.render('about');
+ })
 
 app.get('*',(req, res)=>{
     res.send('no page found');
