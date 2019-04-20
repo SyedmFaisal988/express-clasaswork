@@ -9,19 +9,11 @@ const path = require('path');
  const newPath = path.join(__dirname, '/public/');
 
  app.use(express.static(newPath));
-
+ app.set('view engine', 'hbs');
 console.log(newPath);
 
 app.get('/', (req, res)=>{
-    res.send('<h1>welcome to express world</h1>');
-})
-
-app.get('/helloworld', (req, res)=>{
-    res.send('welcome to hello world');
-})
-
-app.get('/about', (req, res)=>{
-    res.send('welcome to about world');
+    res.render('index')
 })
 
 app.get('*',(req, res)=>{
