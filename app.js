@@ -7,13 +7,18 @@ const path = require('path');
 
  //const newPath = path.join(__dirname, '../public/html');
  const newPath = path.join(__dirname, '/public/');
+ const viewsFolder = path.join(__dirname, '/templates/views');
+ app.set('views', viewsFolder);
 
  app.use(express.static(newPath));
  app.set('view engine', 'hbs');
 console.log(newPath);
 
 app.get('/', (req, res)=>{
-    res.render('index')
+    res.render('index', {
+        title: "This page is Awsome",
+        createdBy: 'SyedmFaisal988',
+    })
 })
 
 app.get('*',(req, res)=>{
