@@ -18,13 +18,18 @@ const hbs = require('hbs');
 console.log(newPath);
 
 app.get('/', (req, res)=>{
+    console.log(req.query);
+    let createdBy = req.query.createdBy;
+    if(!createdBy)    
+        createdBy = "SyedmFaisal988";
     res.render('index', {
         title: "This page is Awsome",
-        createdBy: 'SyedmFaisal988',
-    })
+        createdBy,
+    });
 })
 
 app.get('/about', (req, res)=>{
+    console.log(req.query);
     res.render('about');
  })
 
